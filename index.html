@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Ejemplo Api Clima</title>
+</head>
+<body style="background-image: url(http://www.solofondos.com/wp-content/uploads/2015/11/21omxpw.jpg);">
+    <div class="w-50 mx-auto mt-5">
+        <h1 class="display-3" style="color:lightseagreen; margin-top: 2rem; margin-left: 3rem;">Obtener Clima</h1>
+        <div class="d-flex">
+            <input type="text" id="city" class="form-control" placeholder="Ingresá una ciudad">
+            <input onclick="obtenerClima()" type="submit" class="btn btn-primary "></button>
+        </div>
+    </div>
+    <div class="container">
+        <ul class="ciudades card w-25 mx-auto mt-5" style="background-image: url(https://us.123rf.com/450wm/stanislavpotapov11/stanislavpotapov111705/stanislavpotapov11170500005/77835028-fondo-abstracto-geom%C3%A9trico-azul-vector-flyer-de-dise%C3%B1o-gr%C3%A1fico-dise%C3%B1os-de-folletos-plantillas-de-tar.jpg?ver=6); font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">
+            
+                <p id="ciudad"></p>
+                <span id="temperatura"></span>
+                <span id="grados"></span><br>
+                <span id="humedad"></span>
+                <img id="wicon" src="data:image/png;base64,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" alt="Ícono del tiempo" style="width:auto"><br>
+                <span id="descripcion"></span><br>
+            
+        </ul>
+    </div>
+            
+
+    <script src="./js/index.js"></script>
+</body>
+</html>
